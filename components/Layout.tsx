@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Menu, X, Layers, ChevronDown, MessageCircle, Calculator } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { CookieConsent } from './CookieConsent';
 
 interface NavItem {
   label: string;
   href?: string;
   isDropdown?: boolean;
   children?: { label: string; href: string }[];
-  isButton?: boolean; // Added for calculator button styling
+  isButton?: boolean;
 }
 
 const navStructure: NavItem[] = [
@@ -24,7 +25,7 @@ const navStructure: NavItem[] = [
     ]
   },
   { label: 'Налоги', href: '/#taxes' },
-  { label: 'Калькулятор', href: '/calculator', isButton: true }, // Added Calculator
+  { label: 'Калькулятор', href: '/calculator', isButton: true },
   { label: 'FAQ', href: '/#faq' },
 ];
 
@@ -36,7 +37,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   const dropdownRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  // Close dropdown on click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -47,7 +47,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Close dropdown on Escape key
   useEffect(() => {
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -59,7 +58,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setIsAssetsDropdownOpen(false);
@@ -72,11 +70,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      {/* Header */}
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-corporate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-corporate-500 rounded-sm">
               <div className="bg-corporate-900 text-white p-2 rounded-sm group-hover:bg-corporate-800 transition-colors">
                 <Layers size={24} strokeWidth={1.5} />
@@ -91,7 +87,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               </div>
             </Link>
 
-            {/* Desktop Nav */}
             <nav className="hidden md:flex space-x-1 items-center">
               {navStructure.map((item, index) => {
                 if (item.isDropdown) {
@@ -108,7 +103,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                         <ChevronDown size={14} className={`transition-transform duration-200 ${isAssetsDropdownOpen ? 'rotate-180' : ''}`} />
                       </button>
                       
-                      {/* Dropdown Menu */}
                       {isAssetsDropdownOpen && (
                         <div 
                           className="absolute top-full left-0 w-56 bg-white border border-corporate-100 shadow-lg rounded-sm py-2 mt-1 z-50"
@@ -130,7 +124,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                   );
                 }
                 
-                // Styling for "Calculator" link to look like a button or distinct link
                 if (item.isButton) {
                    return (
                     <Link
@@ -156,7 +149,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               })}
             </nav>
 
-            {/* CTA Button (Desktop) - TELEGRAM */}
             <div className="hidden md:block">
               <a
                 href={telegramUrl}
@@ -169,7 +161,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               </a>
             </div>
 
-            {/* Mobile Menu Button */}
             <div className="md:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -183,7 +174,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           </div>
         </div>
 
-        {/* Mobile Nav */}
         {isMobileMenuOpen && (
           <div className="md:hidden border-t border-corporate-100 bg-white max-h-[calc(100vh-80px)] overflow-y-auto">
             <div className="px-4 pt-2 pb-6 space-y-1">
@@ -227,7 +217,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 );
               })}
               
-              {/* Mobile CTA */}
               <div className="pt-4 px-3">
                 <a
                   href={telegramUrl}
@@ -245,12 +234,10 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         )}
       </header>
 
-      {/* Main Content */}
       <main className="flex-grow">
         {children}
       </main>
 
-      {/* Footer - LEGALLY COMPLIANT */}
       <footer className="bg-corporate-900 text-corporate-300 py-12 border-t border-corporate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -261,37 +248,40 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               </p>
               <div className="mt-4 text-xs text-corporate-500">
                 <p>ИП Иванов И.И. (Placeholder)</p>
-                <p>г. Москва</p>
+                <p>ИНН 770000000000</p>
                 <p>info@cashflow.ru</p>
               </div>
             </div>
             <div>
-              <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Навигация</h4>
+              <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Меню</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/#mechanism" className="hover:text-white transition-colors">Механизм сделки</Link></li>
-                <li><Link to="/#benefits" className="hover:text-white transition-colors">Преимущества</Link></li>
-                <li><Link to="/#assets" className="hover:text-white transition-colors">Подходящие активы</Link></li>
                 <li><Link to="/calculator" className="hover:text-white transition-colors">Калькулятор лизинга</Link></li>
                 <li><Link to="/finansirovanie-biznesa" className="hover:text-white transition-colors">Финансирование бизнеса</Link></li>
+                <li><Link to="/contacts" className="hover:text-white transition-colors">Контакты</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Правовая информация</h4>
-              <div className="space-y-3 text-[10px] text-corporate-500 leading-relaxed">
-                <p>
-                  Информация на сайте не является публичной офертой (ст. 437 ГК РФ). Условия финансирования определяются индивидуально партнерами сервиса (лизинговыми компаниями) после анализа документов.
+              <ul className="space-y-2 text-xs text-corporate-500">
+                <li><Link to="/privacy-policy" className="hover:text-corporate-300">Политика конфиденциальности</Link></li>
+                <li><Link to="/data-processing" className="hover:text-corporate-300">Обработка персональных данных</Link></li>
+              </ul>
+              <div className="mt-4 text-[10px] text-corporate-600 leading-relaxed">
+                <p className="mb-2">
+                  Информация на сайте не является публичной офертой (ст. 437 ГК РФ).
                 </p>
-                <p className="border-t border-corporate-800 pt-2">
-                  <strong>Политика в отношении обработки данных:</strong> Сайт функционирует как информационный ресурс и не содержит технических средств для сбора, накопления или хранения персональных данных пользователей. Вся коммуникация осуществляется в стороннем мессенджере (Telegram) по инициативе пользователя.
+                <p className="text-corporate-500/80 italic">
+                  Предупреждение: Изучите все условия договора лизинга и оцените финансовые риски перед заключением сделки.
                 </p>
               </div>
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-corporate-800 text-center text-[10px] text-corporate-600">
-            © {new Date().getFullYear()} Cashflow. Все права защищены. Сервис информационного посредничества.
+            © {new Date().getFullYear()} Cashflow. Все права защищены.
           </div>
         </div>
       </footer>
+      <CookieConsent />
     </div>
   );
 };

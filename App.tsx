@@ -9,6 +9,9 @@ import Finansirovanie from './pages/Finansirovanie';
 import AlternativaKreditu from './pages/AlternativaKreditu';
 import DengiDlyaBiznesa from './pages/DengiDlyaBiznesa';
 import CalculatorPage from './pages/CalculatorPage';
+import Contacts from './pages/Contacts';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import DataProcessing from './pages/DataProcessing';
 
 // Component to handle scrolling behavior
 const ScrollToTop = () => {
@@ -39,7 +42,6 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/passenger-cars" element={<PassengerCars />} />
-        {/* Route updated from /trucks to /cargo-transport per requirements */}
         <Route path="/cargo-transport" element={<Trucks />} />
         <Route path="/special-machinery" element={<SpecialMachinery />} />
         <Route path="/real-estate" element={<RealEstate />} />
@@ -47,6 +49,9 @@ function App() {
         <Route path="/alternativa-kreditu" element={<AlternativaKreditu />} />
         <Route path="/dengi-dlya-biznesa" element={<DengiDlyaBiznesa />} />
         <Route path="/calculator" element={<CalculatorPage />} />
+        <Route path="/contacts" element={<Contacts />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/data-processing" element={<DataProcessing />} />
       </Routes>
     </div>
   );

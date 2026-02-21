@@ -21,7 +21,8 @@ import {
   Shuffle,
   CheckCircle2,
   Send,
-  Scale
+  Scale,
+  Users
 } from 'lucide-react';
 
 const getIconForAsset = (index: number) => {
@@ -47,7 +48,7 @@ const getIconForBenefit = (index: number) => {
 };
 
 const Home: React.FC = () => {
-  const { seo, hero, mechanism, forWhom, benefits, assets, process, taxes, risks, faq } = homeContent;
+  const { seo, hero, mechanism, forWhom, benefits, assets, process, taxes, risks, faq, howWeWork, expertSummary } = homeContent;
 
   const schema = {
     "@context": "https://schema.org",
@@ -229,8 +230,24 @@ const Home: React.FC = () => {
         </div>
       </Section>
 
+      {/* NEW: HOW WE WORK */}
+      <Section id="how-we-work" dark>
+        <SectionTitle subtitle>{howWeWork.title}</SectionTitle>
+        <div className="grid md:grid-cols-3 gap-8">
+           {howWeWork.steps.map((step, index) => (
+             <div key={index} className="relative p-6 bg-white border border-corporate-200 rounded-sm hover:border-corporate-300 transition-colors">
+               <span className="absolute -top-3 left-6 bg-corporate-900 text-white text-xs font-bold px-2 py-1 rounded-sm">
+                 {step.number}
+               </span>
+               <h3 className="mt-2 text-lg font-bold text-corporate-900 mb-3">{step.title}</h3>
+               <p className="text-sm text-corporate-600 leading-relaxed">{step.text}</p>
+             </div>
+           ))}
+        </div>
+      </Section>
+
       {/* 5. ASSETS */}
-      <Section id="assets" dark>
+      <Section id="assets">
         <SectionTitle subtitle>{assets.title}</SectionTitle>
         <div className="grid md:grid-cols-4 gap-6">
           {assets.items.map((item, index) => (
@@ -253,7 +270,7 @@ const Home: React.FC = () => {
       </Section>
 
       {/* 6. PROCESS */}
-      <Section id="process">
+      <Section id="process" dark>
         <SectionTitle subtitle>{process.title}</SectionTitle>
         <div className="relative border-l border-corporate-300 ml-3 md:ml-6 space-y-10 py-2">
           {process.steps.map((step, index) => (
@@ -266,7 +283,7 @@ const Home: React.FC = () => {
       </Section>
 
       {/* 7. TAXES */}
-      <Section id="taxes" dark>
+      <Section id="taxes">
         <SectionTitle subtitle>{taxes.title}</SectionTitle>
         <div className="max-w-4xl">
           {/* Intro Text */}
@@ -281,7 +298,7 @@ const Home: React.FC = () => {
              </div>
           </div>
 
-          {/* Tax Details Grid/Accordion Replacement */}
+          {/* Tax Details Grid */}
           <div className="space-y-6">
             {taxes.details && taxes.details.map((detail, index) => (
               <div key={index} className="bg-white border border-corporate-200 rounded-sm p-6 md:p-8 shadow-sm">
@@ -329,7 +346,7 @@ const Home: React.FC = () => {
       </Section>
 
       {/* 8. RISKS */}
-      <Section id="risks">
+      <Section id="risks" dark>
         <div className="bg-white border-l-4 border-amber-500 p-8 shadow-sm max-w-3xl">
           <h2 className="text-xl font-semibold text-corporate-900 mb-4 flex items-center gap-3">
             <AlertTriangle className="text-amber-500" />
@@ -346,7 +363,7 @@ const Home: React.FC = () => {
       </Section>
 
       {/* 9. FAQ */}
-      <Section id="faq" dark>
+      <Section id="faq">
         <SectionTitle subtitle>{faq.title}</SectionTitle>
         <div className="max-w-3xl mx-auto">
           {faq.items.map((item, index) => (
@@ -355,7 +372,19 @@ const Home: React.FC = () => {
         </div>
       </Section>
 
-      {/* 10. CTA - REPLACED WITH CONTACT BLOCK */}
+      {/* NEW: EXPERT SUMMARY (SEO TEXT) */}
+      <Section dark>
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-corporate-900 mb-6">{expertSummary.title}</h2>
+          <div className="prose prose-corporate text-corporate-700 max-w-none text-sm leading-relaxed space-y-4">
+             {expertSummary.content.map((paragraph, index) => (
+               <p key={index}>{paragraph}</p>
+             ))}
+          </div>
+        </div>
+      </Section>
+
+      {/* 10. CTA */}
       <ContactBlock />
     </Layout>
   );
