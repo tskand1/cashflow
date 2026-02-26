@@ -70,19 +70,19 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-corporate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <Link to="/" className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-corporate-500 rounded-sm">
-              <div className="bg-corporate-900 text-white p-2 rounded-sm group-hover:bg-corporate-800 transition-colors">
-                <Layers size={24} strokeWidth={1.5} />
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 h-20 flex items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="flex justify-between items-center">
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="bg-accent text-white p-2 rounded-xl group-hover:bg-accent-hover transition-all duration-300 shadow-lg shadow-red-500/20">
+                <Layers size={24} strokeWidth={2} />
               </div>
               <div className="flex flex-col">
-                <span className="text-xl font-semibold tracking-tight text-corporate-900 leading-none">
+                <span className="text-xl font-extrabold tracking-tighter text-corporate-900 leading-none">
                   CASHFLOW
                 </span>
-                <span className="text-[10px] font-medium text-corporate-500 uppercase tracking-widest leading-none mt-1">
-                  возвратный лизинг для бизнеса
+                <span className="text-[10px] font-bold text-corporate-400 uppercase tracking-widest leading-none mt-1">
+                  возвратный лизинг
                 </span>
               </div>
             </Link>
@@ -95,7 +95,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                       <button
                         onClick={toggleAssetsDropdown}
                         onMouseEnter={() => setIsAssetsDropdownOpen(true)}
-                        className="flex items-center gap-1 px-4 py-2 text-sm font-medium text-corporate-600 hover:text-corporate-900 transition-colors duration-200 rounded-sm focus:outline-none focus:bg-corporate-50"
+                        className="flex items-center gap-1 px-4 py-2 text-sm font-bold text-corporate-900 hover:text-accent transition-colors duration-200"
                         aria-expanded={isAssetsDropdownOpen}
                         aria-haspopup="true"
                       >
@@ -105,15 +105,14 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                       
                       {isAssetsDropdownOpen && (
                         <div 
-                          className="absolute top-full left-0 w-56 bg-white border border-corporate-100 shadow-lg rounded-sm py-2 mt-1 z-50"
+                          className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-100 rounded-2xl shadow-card p-2 animate-in fade-in slide-in-from-top-2 duration-200"
                           onMouseLeave={() => setIsAssetsDropdownOpen(false)}
                         >
-                          {item.children?.map((child) => (
+                          {item.children?.map((child, childIdx) => (
                             <Link
-                              key={child.href}
+                              key={childIdx}
                               to={child.href}
-                              className="block px-4 py-3 text-sm text-corporate-700 hover:bg-corporate-50 hover:text-corporate-900 transition-colors"
-                              onClick={() => setIsAssetsDropdownOpen(false)}
+                              className="block px-4 py-3 text-sm font-medium text-corporate-600 hover:text-accent hover:bg-gray-50 rounded-xl transition-all"
                             >
                               {child.label}
                             </Link>
@@ -123,25 +122,24 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                     </div>
                   );
                 }
-                
+
                 if (item.isButton) {
-                   return (
+                  return (
                     <Link
                       key={index}
-                      to={item.href!}
-                      className="px-4 py-2 ml-2 text-sm font-semibold text-emerald-700 hover:text-emerald-900 transition-colors duration-200 flex items-center gap-1.5"
+                      to={item.href || '/'}
+                      className="ml-4 px-6 py-2.5 bg-accent text-white rounded-xl text-sm font-bold hover:bg-accent-hover transition-all duration-300 shadow-lg shadow-red-500/20 hover:shadow-red-500/40 hover:-translate-y-0.5"
                     >
-                      <Calculator size={16} />
                       {item.label}
                     </Link>
-                   );
+                  );
                 }
 
                 return (
                   <Link
                     key={index}
-                    to={item.href!}
-                    className="px-4 py-2 text-sm font-medium text-corporate-600 hover:text-corporate-900 transition-colors duration-200 rounded-sm focus:outline-none focus:bg-corporate-50"
+                    to={item.href || '/'}
+                    className="px-4 py-2 text-sm font-bold text-corporate-900 hover:text-accent transition-colors duration-200"
                   >
                     {item.label}
                   </Link>
@@ -149,135 +147,156 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
               })}
             </nav>
 
-            <div className="hidden md:block">
-              <a
+            <div className="flex items-center gap-4">
+              <a 
                 href={telegramUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 bg-corporate-900 text-white text-sm font-medium rounded-sm hover:bg-corporate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-corporate-900 flex items-center gap-2"
+                className="hidden lg:flex items-center gap-2 px-5 py-2.5 border-2 border-gray-100 text-corporate-900 rounded-xl text-sm font-bold hover:border-corporate-900 transition-all duration-300"
               >
-                <MessageCircle size={16} />
+                <MessageCircle size={18} className="text-accent" />
                 Консультация
               </a>
-            </div>
-
-            <div className="md:hidden">
-              <button
+              <button 
+                className="md:hidden p-2 text-corporate-900 hover:bg-gray-50 rounded-xl transition-colors"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-corporate-900 p-2 rounded-sm focus:outline-none focus:bg-corporate-50"
-                aria-label="Меню"
-                aria-expanded={isMobileMenuOpen}
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
             </div>
           </div>
         </div>
+      </header>
 
-        {isMobileMenuOpen && (
-          <div className="md:hidden border-t border-corporate-100 bg-white max-h-[calc(100vh-80px)] overflow-y-auto">
-            <div className="px-4 pt-2 pb-6 space-y-1">
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-[60] bg-white animate-in fade-in slide-in-from-right duration-300 md:hidden">
+          <div className="flex flex-col h-full">
+            <div className="flex justify-between items-center h-20 px-4 border-b border-gray-100">
+              <Link to="/" className="flex items-center gap-3">
+                <div className="bg-accent text-white p-2 rounded-xl">
+                  <Layers size={24} />
+                </div>
+                <span className="text-xl font-extrabold tracking-tighter text-corporate-900">CASHFLOW</span>
+              </Link>
+              <button onClick={() => setIsMobileMenuOpen(false)} className="p-2">
+                <X size={24} />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto py-8 px-4 space-y-2">
               {navStructure.map((item, index) => {
                 if (item.isDropdown) {
                   return (
-                    <div key={index} className="space-y-1">
-                      <button
-                        onClick={() => setIsAssetsDropdownOpen(!isAssetsDropdownOpen)}
-                        className="w-full flex justify-between items-center px-3 py-3 text-base font-medium text-corporate-700 hover:bg-corporate-50 rounded-sm"
-                      >
+                    <div key={index} className="space-y-2">
+                      <div className="px-4 py-2 text-xs font-bold text-corporate-400 uppercase tracking-widest">
                         {item.label}
-                        <ChevronDown size={16} className={`transition-transform duration-200 ${isAssetsDropdownOpen ? 'rotate-180' : ''}`} />
-                      </button>
-                      {isAssetsDropdownOpen && (
-                        <div className="pl-6 space-y-1 border-l-2 border-corporate-100 ml-3">
-                          {item.children?.map((child) => (
-                            <Link
-                              key={child.href}
-                              to={child.href}
-                              className="block px-3 py-2 text-sm font-medium text-corporate-600 hover:text-corporate-900 rounded-sm"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
+                      </div>
+                      {item.children?.map((child, childIdx) => (
+                        <Link
+                          key={childIdx}
+                          to={child.href}
+                          className="block px-4 py-4 text-xl font-bold text-corporate-900 active:text-accent"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
                     </div>
                   );
                 }
-                
                 return (
                   <Link
                     key={index}
-                    to={item.href!}
-                    className={`block px-3 py-3 text-base font-medium rounded-sm ${item.isButton ? 'text-emerald-700 bg-emerald-50' : 'text-corporate-700 hover:bg-corporate-50'}`}
+                    to={item.href || '/'}
+                    className={`block px-4 py-4 text-xl font-bold ${item.isButton ? 'text-accent' : 'text-corporate-900'}`}
                   >
-                    {item.isButton && <Calculator size={16} className="inline mr-2 -mt-0.5" />}
                     {item.label}
                   </Link>
                 );
               })}
-              
-              <div className="pt-4 px-3">
-                <a
-                  href={telegramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center px-5 py-3 bg-corporate-900 text-white text-base font-medium rounded-sm hover:bg-corporate-800 transition-colors flex items-center justify-center gap-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  <MessageCircle size={18} />
-                  Получить консультацию
-                </a>
-              </div>
+            </div>
+            <div className="p-4 border-t border-gray-100">
+              <a 
+                href={telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 w-full py-5 bg-accent text-white rounded-2xl text-lg font-bold shadow-xl shadow-red-500/20"
+              >
+                <MessageCircle size={24} />
+                Написать эксперту
+              </a>
             </div>
           </div>
-        )}
-      </header>
+        </div>
+      )}
 
       <main className="flex-grow">
         {children}
       </main>
 
-      <footer className="bg-corporate-900 text-corporate-300 py-12 border-t border-corporate-800">
+      <footer className="bg-corporate-900 text-white pt-24 pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            <div>
-              <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">О сервисе</h4>
-              <p className="text-xs leading-relaxed text-corporate-400">
-                Cashflow — информационно-аналитический сервис. Мы не являемся лизинговой компанией, банком или кредитной организацией. Сервис оказывает исключительно информационно-консультационные услуги по подбору финансовых решений.
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+            <div className="md:col-span-4">
+              <Link to="/" className="flex items-center gap-3 mb-8">
+                <div className="bg-accent text-white p-2 rounded-xl">
+                  <Layers size={24} />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-2xl font-extrabold tracking-tighter leading-none">CASHFLOW</span>
+                  <span className="text-[10px] font-bold text-corporate-400 uppercase tracking-widest leading-none mt-1">возвратный лизинг</span>
+                </div>
+              </Link>
+              <p className="text-corporate-400 text-sm leading-relaxed mb-8 max-w-sm">
+                Профессиональный сервис по привлечению финансирования через механизм возвратного лизинга для малого и среднего бизнеса.
               </p>
-              <div className="mt-4 text-xs text-corporate-500">
-                <p>ИП Иванов И.И. (Placeholder)</p>
-                <p>ИНН 770000000000</p>
-                <p>info@cashflow.ru</p>
+              <div className="flex gap-4">
+                <a href={telegramUrl} className="w-12 h-12 bg-corporate-800 rounded-xl flex items-center justify-center hover:bg-accent transition-all duration-300">
+                  <MessageCircle size={20} />
+                </a>
+                <Link to="/calculator" className="w-12 h-12 bg-corporate-800 rounded-xl flex items-center justify-center hover:bg-accent transition-all duration-300">
+                  <Calculator size={20} />
+                </Link>
               </div>
             </div>
-            <div>
-              <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Меню</h4>
-              <ul className="space-y-2 text-sm">
-                <li><Link to="/calculator" className="hover:text-white transition-colors">Калькулятор лизинга</Link></li>
-                <li><Link to="/finansirovanie-biznesa" className="hover:text-white transition-colors">Финансирование бизнеса</Link></li>
-                <li><Link to="/contacts" className="hover:text-white transition-colors">Контакты</Link></li>
+
+            <div className="md:col-span-2">
+              <h4 className="text-xs font-bold text-corporate-500 uppercase tracking-widest mb-8">Сервисы</h4>
+              <ul className="space-y-4">
+                <li><Link to="/passenger-cars" className="text-sm font-medium text-corporate-300 hover:text-white transition-colors">Легковые авто</Link></li>
+                <li><Link to="/cargo-transport" className="text-sm font-medium text-corporate-300 hover:text-white transition-colors">Грузовой транспорт</Link></li>
+                <li><Link to="/special-machinery" className="text-sm font-medium text-corporate-300 hover:text-white transition-colors">Спецтехника</Link></li>
+                <li><Link to="/real-estate" className="text-sm font-medium text-corporate-300 hover:text-white transition-colors">Недвижимость</Link></li>
               </ul>
             </div>
-            <div>
-              <h4 className="text-white text-sm font-semibold uppercase tracking-wider mb-4">Правовая информация</h4>
-              <ul className="space-y-2 text-xs text-corporate-500">
-                <li><Link to="/privacy-policy" className="hover:text-corporate-300">Политика конфиденциальности</Link></li>
-                <li><Link to="/data-processing" className="hover:text-corporate-300">Обработка персональных данных</Link></li>
+
+            <div className="md:col-span-2">
+              <h4 className="text-xs font-bold text-corporate-500 uppercase tracking-widest mb-8">Компания</h4>
+              <ul className="space-y-4">
+                <li><Link to="/contacts" className="text-sm font-medium text-corporate-300 hover:text-white transition-colors">Контакты</Link></li>
+                <li><Link to="/privacy-policy" className="text-sm font-medium text-corporate-300 hover:text-white transition-colors">Политика конфиденциальности</Link></li>
+                <li><Link to="/data-processing" className="text-sm font-medium text-corporate-300 hover:text-white transition-colors">Обработка данных</Link></li>
               </ul>
-              <div className="mt-4 text-[10px] text-corporate-600 leading-relaxed">
-                <p className="mb-2">
-                  Информация на сайте не является публичной офертой (ст. 437 ГК РФ).
-                </p>
-                <p className="text-corporate-500/80 italic">
-                  Предупреждение: Изучите все условия договора лизинга и оцените финансовые риски перед заключением сделки.
-                </p>
-              </div>
+            </div>
+
+            <div className="md:col-span-4">
+              <h4 className="text-xs font-bold text-corporate-500 uppercase tracking-widest mb-8">Отказ от ответственности</h4>
+              <p className="text-[11px] text-corporate-500 leading-relaxed">
+                Информация на сайте носит ознакомительный характер и не является публичной офертой. 
+                Все расчеты в калькуляторе являются предварительными. 
+                Условия финансирования определяются индивидуально после анализа документов.
+              </p>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-corporate-800 text-center text-[10px] text-corporate-600">
-            © {new Date().getFullYear()} Cashflow. Все права защищены.
+
+          <div className="pt-8 border-t border-corporate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-xs text-corporate-500">
+              © {new Date().getFullYear()} Cashflow. Все права защищены.
+            </p>
+            <div className="flex items-center gap-2 text-[10px] font-bold text-corporate-600 uppercase tracking-widest">
+              <span>Banking Digital Standard</span>
+              <div className="w-1 h-1 bg-accent rounded-full"></div>
+              <span>B2B Focused</span>
+            </div>
           </div>
         </div>
       </footer>

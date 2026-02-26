@@ -90,48 +90,48 @@ const CalculatorPage: React.FC = () => {
   return (
     <Layout>
       {/* Breadcrumbs */}
-      <div className="bg-corporate-900 pt-24 pb-4 border-b border-corporate-800">
+      <div className="bg-white pt-32 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="flex items-center text-xs text-corporate-400 uppercase tracking-wider space-x-2">
-              <Link to="/" className="hover:text-white transition-colors">Главная</Link>
-              <ChevronRight size={12} />
-              <span className="text-white">Калькулятор</span>
+           <div className="flex items-center text-[10px] text-corporate-400 font-bold uppercase tracking-[0.2em] space-x-3">
+              <Link to="/" className="hover:text-accent transition-colors">Главная</Link>
+              <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
+              <span className="text-corporate-900">Калькулятор</span>
            </div>
         </div>
       </div>
 
-      <div className="bg-corporate-50 min-h-screen py-12 md:py-20">
+      <div className="bg-white min-h-screen py-12 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-5xl font-semibold text-corporate-900 mb-4">
-              Лизинговый калькулятор онлайн
+          <div className="text-center mb-20">
+            <h1 className="text-5xl md:text-7xl font-bold text-corporate-900 mb-8 font-display tracking-tight">
+              Лизинговый калькулятор
             </h1>
-            <p className="text-xl text-corporate-600 font-light max-w-2xl mx-auto">
+            <p className="text-2xl text-corporate-500 font-light max-w-3xl mx-auto leading-tight">
               Рассчитайте ориентировочные условия возвратного лизинга для бизнеса с учетом налоговых преференций 2025 года.
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-12 gap-8 items-start">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
             
             {/* LEFT COLUMN: CONTROLS */}
-            <div className="lg:col-span-7 bg-white p-6 md:p-10 rounded-sm shadow-sm border border-corporate-200">
-              <div className="space-y-10">
+            <div className="lg:col-span-7 bg-gray-50 p-10 md:p-16 rounded-[40px] border border-gray-100 shadow-sm">
+              <div className="space-y-16">
                 
                 {/* Price Input */}
                 <div>
-                  <div className="flex justify-between items-end mb-4">
-                    <label className="text-sm font-medium text-corporate-500 uppercase tracking-wide">
+                  <div className="flex justify-between items-end mb-8">
+                    <label className="text-xs font-bold text-corporate-400 uppercase tracking-widest">
                       Стоимость актива (с НДС)
                     </label>
-                    <div className="text-right">
+                    <div className="text-right flex items-baseline">
                        <input 
                          type="number"
                          value={price}
                          onChange={(e) => setPrice(Number(e.target.value))}
-                         className="text-right font-bold text-2xl text-corporate-900 border-b border-corporate-200 focus:border-emerald-500 outline-none w-48 py-1"
+                         className="text-right font-bold text-4xl text-corporate-900 bg-transparent border-b-2 border-gray-200 focus:border-accent outline-none w-64 py-2 font-display transition-colors"
                        />
-                       <span className="text-corporate-400 ml-2">₽</span>
+                       <span className="text-corporate-400 ml-3 text-2xl font-display">₽</span>
                     </div>
                   </div>
                   <input 
@@ -141,9 +141,9 @@ const CalculatorPage: React.FC = () => {
                     step="100000"
                     value={price} 
                     onChange={(e) => setPrice(Number(e.target.value))}
-                    className="w-full h-2 bg-corporate-100 rounded-lg appearance-none cursor-pointer accent-emerald-600 hover:accent-emerald-700 transition-all"
+                    className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent hover:accent-accent-hover transition-all"
                   />
-                  <div className="flex justify-between text-xs text-corporate-400 mt-2 font-medium">
+                  <div className="flex justify-between text-[10px] text-corporate-400 mt-4 font-bold uppercase tracking-widest">
                     <span>1 млн ₽</span>
                     <span>20 млн ₽</span>
                   </div>
@@ -151,11 +151,11 @@ const CalculatorPage: React.FC = () => {
 
                 {/* Advance Input */}
                 <div>
-                  <div className="flex justify-between items-end mb-4">
-                    <label className="text-sm font-medium text-corporate-500 uppercase tracking-wide">
+                  <div className="flex justify-between items-end mb-8">
+                    <label className="text-xs font-bold text-corporate-400 uppercase tracking-widest">
                       Аванс ({advanceRate}%)
                     </label>
-                    <div className="text-right font-bold text-2xl text-corporate-900">
+                    <div className="text-right font-bold text-4xl text-corporate-900 font-display">
                       {formatCurrency(results.advanceAmount)}
                     </div>
                   </div>
@@ -166,9 +166,9 @@ const CalculatorPage: React.FC = () => {
                     step="1"
                     value={advanceRate} 
                     onChange={(e) => setAdvanceRate(Number(e.target.value))}
-                    className="w-full h-2 bg-corporate-100 rounded-lg appearance-none cursor-pointer accent-emerald-600 hover:accent-emerald-700 transition-all"
+                    className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent hover:accent-accent-hover transition-all"
                   />
-                  <div className="flex justify-between text-xs text-corporate-400 mt-2 font-medium">
+                  <div className="flex justify-between text-[10px] text-corporate-400 mt-4 font-bold uppercase tracking-widest">
                     <span>5%</span>
                     <span>50%</span>
                   </div>
@@ -176,11 +176,11 @@ const CalculatorPage: React.FC = () => {
 
                 {/* Term Input */}
                 <div>
-                  <div className="flex justify-between items-end mb-4">
-                    <label className="text-sm font-medium text-corporate-500 uppercase tracking-wide">
+                  <div className="flex justify-between items-end mb-8">
+                    <label className="text-xs font-bold text-corporate-400 uppercase tracking-widest">
                       Срок лизинга
                     </label>
-                    <div className="text-right font-bold text-2xl text-corporate-900">
+                    <div className="text-right font-bold text-4xl text-corporate-900 font-display">
                       {term} мес.
                     </div>
                   </div>
@@ -191,18 +191,18 @@ const CalculatorPage: React.FC = () => {
                     step="1"
                     value={term} 
                     onChange={(e) => setTerm(Number(e.target.value))}
-                    className="w-full h-2 bg-corporate-100 rounded-lg appearance-none cursor-pointer accent-emerald-600 hover:accent-emerald-700 transition-all"
+                    className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-accent hover:accent-accent-hover transition-all"
                   />
-                  <div className="flex justify-between text-xs text-corporate-400 mt-2 font-medium">
+                  <div className="flex justify-between text-[10px] text-corporate-400 mt-4 font-bold uppercase tracking-widest">
                     <span>12 мес.</span>
                     <span>60 мес.</span>
                   </div>
                 </div>
 
                 {/* Info Block */}
-                <div className="bg-corporate-50 p-6 rounded-sm flex gap-4 text-sm text-corporate-600">
-                  <Info className="flex-shrink-0 text-corporate-400" />
-                  <p>
+                <div className="bg-white p-8 rounded-3xl flex gap-6 text-base text-corporate-600 border border-gray-100 shadow-sm">
+                  <Info className="flex-shrink-0 text-accent w-6 h-6" />
+                  <p className="leading-relaxed">
                     Параметры сделки могут быть скорректированы после анализа финансового состояния компании и оценки ликвидности предмета лизинга.
                   </p>
                 </div>
@@ -211,45 +211,45 @@ const CalculatorPage: React.FC = () => {
             </div>
 
             {/* RIGHT COLUMN: RESULTS */}
-            <div className="lg:col-span-5 space-y-6">
+            <div className="lg:col-span-5 space-y-8">
               
-              <div className="bg-corporate-900 text-white p-8 md:p-10 rounded-sm shadow-xl relative overflow-hidden">
+              <div className="bg-corporate-900 text-white p-10 md:p-16 rounded-[40px] shadow-2xl relative overflow-hidden">
                 {/* Decorative bg element */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500 opacity-5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-[100px] transform translate-x-1/3 -translate-y-1/3"></div>
                 
-                <h3 className="text-lg font-medium text-corporate-300 mb-8 flex items-center gap-2">
-                  <Calculator size={18} />
+                <h3 className="text-xs font-bold text-corporate-400 uppercase tracking-[0.3em] mb-12 flex items-center gap-3 relative z-10">
+                  <Calculator size={16} className="text-accent" />
                   Наше предложение
                 </h3>
 
-                <div className="mb-10">
-                  <span className="block text-sm text-corporate-400 uppercase tracking-wider mb-2">
+                <div className="mb-16 relative z-10">
+                  <span className="block text-xs text-corporate-400 uppercase tracking-widest mb-4">
                     Ежемесячный платёж
                   </span>
-                  <span className="block text-4xl md:text-5xl font-bold text-white tracking-tight">
+                  <span className="block text-5xl md:text-6xl font-bold text-white tracking-tight font-display">
                     {formatCurrency(results.monthlyPayment)}
                   </span>
-                  <span className="text-xs text-emerald-400 mt-2 block">
+                  <span className="text-sm text-accent mt-4 block font-medium">
                     Включая НДС 22%
                   </span>
                 </div>
 
-                <div className="space-y-4 border-t border-corporate-700 pt-6 mb-8">
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-corporate-300">Сумма договора лизинга</span>
-                    <span className="font-medium">{formatCurrency(results.contractAmount)}</span>
+                <div className="space-y-6 border-t border-corporate-800 pt-10 mb-12 relative z-10">
+                  <div className="flex justify-between items-center text-base">
+                    <span className="text-corporate-400">Сумма договора лизинга</span>
+                    <span className="font-bold font-display">{formatCurrency(results.contractAmount)}</span>
                   </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-corporate-300 flex items-center gap-1.5">
-                      <TrendingDown size={14} className="text-emerald-500"/> Возмещение НДС (22%)
+                  <div className="flex justify-between items-center text-base">
+                    <span className="text-corporate-400 flex items-center gap-2">
+                      <TrendingDown size={16} className="text-accent"/> Возмещение НДС (22%)
                     </span>
-                    <span className="font-medium text-emerald-300">{formatCurrency(results.vatRefund)}</span>
+                    <span className="font-bold font-display text-accent">{formatCurrency(results.vatRefund)}</span>
                   </div>
-                  <div className="flex justify-between items-center text-sm">
-                    <span className="text-corporate-300 flex items-center gap-1.5">
-                      <PieChart size={14} className="text-emerald-500"/> Экономия по налогу на прибыль (25%)
+                  <div className="flex justify-between items-center text-base">
+                    <span className="text-corporate-400 flex items-center gap-2">
+                      <PieChart size={16} className="text-accent"/> Экономия по налогу (25%)
                     </span>
-                    <span className="font-medium text-emerald-300">{formatCurrency(results.taxSavings)}</span>
+                    <span className="font-bold font-display text-accent">{formatCurrency(results.taxSavings)}</span>
                   </div>
                 </div>
 
@@ -257,29 +257,30 @@ const CalculatorPage: React.FC = () => {
                   href={telegramCalcUrl}
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-4 px-6 rounded-sm transition-all duration-200 shadow-lg hover:shadow-emerald-900/20 transform hover:-translate-y-0.5"
+                  className="w-full flex items-center justify-center gap-3 bg-accent hover:bg-accent-hover text-white font-bold py-6 px-10 rounded-2xl transition-all duration-300 shadow-2xl shadow-red-500/30 transform hover:-translate-y-1 text-xl relative z-10"
                 >
-                  <Send size={18} />
-                  Получить консультацию
+                  <Send size={20} />
+                  Получить расчёт
                 </a>
                 
-                <p className="text-[10px] text-corporate-500 mt-6 text-center leading-normal">
+                <p className="text-[10px] text-corporate-600 mt-10 text-center leading-relaxed uppercase tracking-widest relative z-10">
                   Расчёт является ориентировочным и не является публичной офертой (ст. 437 ГК РФ).
                 </p>
               </div>
 
               {/* Benefits Summary */}
-              <div className="bg-white p-6 rounded-sm border border-corporate-200 shadow-sm">
-                <div className="flex items-center gap-3 mb-2">
-                   <div className="p-2 bg-emerald-50 rounded-full text-emerald-700">
-                     <Coins size={20} />
+              <div className="bg-gray-50 p-10 rounded-[40px] border border-gray-100 shadow-sm relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl group-hover:bg-emerald-500/10 transition-colors duration-500"></div>
+                <div className="flex items-center gap-4 mb-6 relative z-10">
+                   <div className="p-3 bg-white rounded-xl text-emerald-500 shadow-sm">
+                     <Coins size={24} />
                    </div>
-                   <h4 className="font-bold text-corporate-900">Налоговая выгода</h4>
+                   <h4 className="font-bold text-corporate-900 text-xl font-display">Налоговая выгода</h4>
                 </div>
-                <p className="text-sm text-corporate-600 mb-2">
+                <p className="text-base text-corporate-600 mb-4 relative z-10 leading-relaxed">
                   Общая сумма налоговых преференций за весь срок лизинга:
                 </p>
-                <p className="text-2xl font-bold text-emerald-700">
+                <p className="text-4xl font-bold text-emerald-600 font-display relative z-10">
                   {formatCurrency(results.vatRefund + results.taxSavings)}
                 </p>
               </div>
@@ -288,10 +289,10 @@ const CalculatorPage: React.FC = () => {
           </div>
 
           {/* SEO Text Block */}
-          <Section className="mt-8">
+          <Section className="mt-20">
             <div className="max-w-4xl mx-auto text-center">
-              <p className="text-corporate-700 text-lg leading-relaxed font-light">
-                Лизинговый калькулятор Cashflow помогает бизнесу оценить выгоду возвратного лизинга, сравнить экономическую эффективность инструмента с классическим кредитованием и принять взвешенное решение. Мы учитываем актуальные налоговые ставки РФ, чтобы вы видели реальную стоимость денег для вашего бизнеса.
+              <p className="text-2xl text-corporate-500 leading-relaxed font-light italic">
+                «Лизинговый калькулятор Cashflow помогает бизнесу оценить выгоду возвратного лизинга, сравнить экономическую эффективность инструмента с классическим кредитованием и принять взвешенное решение. Мы учитываем актуальные налоговые ставки РФ, чтобы вы видели реальную стоимость денег для вашего бизнеса.»
               </p>
             </div>
           </Section>

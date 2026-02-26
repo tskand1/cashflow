@@ -11,9 +11,9 @@ export const Section: React.FC<SectionProps> = ({ id, className = '', children, 
   return (
     <section 
       id={id} 
-      className={`py-16 md:py-24 ${dark ? 'bg-corporate-50' : 'bg-white'} ${className}`}
+      className={`py-20 md:py-32 ${dark ? 'bg-corporate-50' : 'bg-white'} ${className}`}
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {children}
       </div>
     </section>
@@ -21,12 +21,12 @@ export const Section: React.FC<SectionProps> = ({ id, className = '', children, 
 };
 
 export const SectionTitle: React.FC<{ children: React.ReactNode, subtitle?: boolean }> = ({ children, subtitle }) => (
-  <div className="mb-12 md:mb-16">
-    <h2 className="text-2xl md:text-3xl font-semibold text-corporate-900 tracking-tight mb-4">
+  <div className="mb-16 md:mb-24">
+    <h2 className="text-3xl md:text-5xl font-bold text-corporate-900 tracking-tight mb-6 font-display">
       {children}
     </h2>
     {subtitle && (
-      <div className="h-1 w-16 bg-corporate-900 opacity-20 mb-6"></div>
+      <div className="h-1.5 w-20 bg-accent rounded-full mb-8"></div>
     )}
   </div>
 );

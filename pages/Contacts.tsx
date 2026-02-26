@@ -13,52 +13,60 @@ const Contacts: React.FC = () => {
 
   return (
     <Layout>
-      <div className="bg-corporate-900 pt-24 pb-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl md:text-4xl font-semibold text-white mb-4">Контакты</h1>
+      <div className="bg-white pt-32 pb-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h1 className="text-5xl md:text-7xl font-bold text-corporate-900 mb-8 font-display tracking-tight">Контакты</h1>
         </div>
       </div>
 
       <Section>
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white border border-corporate-200 rounded-sm p-8 shadow-sm">
-            <h2 className="text-xl font-bold text-corporate-900 mb-6 flex items-center gap-2">
-              <Building2 className="text-corporate-500" />
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white border border-gray-100 rounded-[40px] p-10 md:p-16 shadow-card relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-gray-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+            
+            <h2 className="text-3xl font-bold text-corporate-900 mb-12 flex items-center gap-4 font-display relative z-10">
+              <div className="p-3 bg-gray-50 rounded-xl">
+                <Building2 className="text-accent w-8 h-8" />
+              </div>
               Информация о владельце
             </h2>
             
-            <div className="space-y-6 text-corporate-700">
+            <div className="space-y-10 text-corporate-700 relative z-10">
               <div>
-                <p className="text-sm text-corporate-500 uppercase tracking-wide mb-1">Наименование</p>
-                <p className="font-medium text-lg">ИП Иванов Иван Иванович (Placeholder)</p>
+                <p className="text-[10px] text-corporate-400 uppercase tracking-[0.3em] font-bold mb-3">Наименование</p>
+                <p className="font-bold text-3xl text-corporate-900 font-display">ИП Иванов Иван Иванович (Placeholder)</p>
               </div>
               
-              <div>
-                <p className="text-sm text-corporate-500 uppercase tracking-wide mb-1">ИНН</p>
-                <p className="font-medium">770000000000</p>
+              <div className="grid md:grid-cols-2 gap-10">
+                <div>
+                  <p className="text-[10px] text-corporate-400 uppercase tracking-[0.3em] font-bold mb-3">ИНН</p>
+                  <p className="font-bold text-2xl text-corporate-900 font-display tracking-wider">770000000000</p>
+                </div>
+
+                <div>
+                  <p className="text-[10px] text-corporate-400 uppercase tracking-[0.3em] font-bold mb-3">ОГРНИП</p>
+                  <p className="font-bold text-2xl text-corporate-900 font-display tracking-wider">320770000000000</p>
+                </div>
               </div>
 
-              <div>
-                <p className="text-sm text-corporate-500 uppercase tracking-wide mb-1">ОГРНИП</p>
-                <p className="font-medium">320770000000000</p>
-              </div>
-
-              <div className="border-t border-corporate-100 pt-6">
-                <h3 className="text-lg font-bold text-corporate-900 mb-4 flex items-center gap-2">
-                   <Mail className="text-corporate-500" />
+              <div className="border-t border-gray-100 pt-12">
+                <h3 className="text-2xl font-bold text-corporate-900 mb-8 flex items-center gap-4 font-display">
+                   <div className="p-3 bg-gray-50 rounded-xl">
+                    <Mail className="text-accent w-6 h-6" />
+                   </div>
                    Связь
                 </h3>
-                <p className="mb-2">Для юридически значимых сообщений и обращений:</p>
-                <a href="mailto:info@cashflow.ru" className="text-emerald-600 hover:text-emerald-700 font-medium text-lg">
+                <p className="mb-6 text-lg text-corporate-500">Для юридически значимых сообщений и обращений:</p>
+                <a href="mailto:info@cashflow.ru" className="text-accent hover:text-accent-hover font-bold text-4xl font-display transition-colors border-b-4 border-accent/20 hover:border-accent">
                   info@cashflow.ru
                 </a>
               </div>
             </div>
           </div>
           
-          <div className="mt-8 flex items-start gap-3 p-4 bg-corporate-50 rounded-sm text-sm text-corporate-600">
-             <FileText className="flex-shrink-0 text-corporate-400" />
-             <p>
+          <div className="mt-12 flex items-start gap-6 p-10 bg-gray-50 rounded-3xl text-base text-corporate-500 border border-gray-100 shadow-sm">
+             <FileText className="flex-shrink-0 text-accent w-8 h-8" />
+             <p className="leading-relaxed italic">
                Сайт является информационным ресурсом. Мы не оказываем финансовых услуг, не выдаем кредиты и не заключаем договоры лизинга напрямую. Все сделки заключаются непосредственно с лизинговыми компаниями-партнерами.
              </p>
           </div>

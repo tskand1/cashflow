@@ -86,33 +86,35 @@ const Home: React.FC = () => {
   return (
     <Layout>
       {/* 1. HERO */}
-      <div id="hero" className="bg-corporate-900 pt-16 pb-20 md:pt-32 md:pb-32 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-white opacity-[0.03] transform -skew-x-12 translate-x-1/4"></div>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white leading-tight mb-6">
-            {hero.title}
-          </h1>
-          <p className="text-xl md:text-2xl text-corporate-200 font-light mb-8 max-w-3xl">
-            {hero.subtitle}
-          </p>
-          <p className="text-lg text-corporate-400 max-w-2xl leading-relaxed font-light mb-10">
-            {hero.description}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a 
-              href={telegramUrl}
-              target="_blank"
-              rel="noopener noreferrer" 
-              className="inline-flex justify-center items-center px-6 py-3 bg-white text-corporate-900 hover:bg-corporate-100 transition-colors duration-300 rounded-sm font-medium"
-            >
-              {hero.ctaPrimary}
-            </a>
-            <Link 
-              to="/calculator"
-              className="inline-flex justify-center items-center px-6 py-3 border border-white text-white hover:bg-white hover:text-corporate-900 transition-colors duration-300 rounded-sm font-medium"
-            >
-              {hero.ctaSecondary}
-            </Link>
+      <div id="hero" className="bg-white pt-32 pb-24 md:pt-48 md:pb-40 overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gray-50 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-4xl">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-corporate-900 leading-[0.9] tracking-tight mb-8 font-display">
+              {hero.title}
+            </h1>
+            <p className="text-2xl md:text-3xl text-corporate-500 font-light mb-10 leading-tight">
+              {hero.subtitle}
+            </p>
+            <p className="text-lg md:text-xl text-corporate-400 max-w-2xl leading-relaxed mb-12">
+              {hero.description}
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6">
+              <a 
+                href={telegramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex justify-center items-center px-10 py-5 bg-accent text-white hover:bg-accent-hover transition-all duration-300 rounded-2xl font-bold text-xl shadow-2xl shadow-red-500/30 hover:-translate-y-1"
+              >
+                {hero.ctaPrimary}
+              </a>
+              <Link 
+                to="/calculator"
+                className="inline-flex justify-center items-center px-10 py-5 border-2 border-gray-100 text-corporate-900 hover:border-corporate-900 hover:bg-corporate-900 hover:text-white transition-all duration-300 rounded-2xl font-bold text-xl"
+              >
+                {hero.ctaSecondary}
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -134,59 +136,62 @@ const Home: React.FC = () => {
         <SectionTitle subtitle>{forWhom.title}</SectionTitle>
         <div className="grid md:grid-cols-3 gap-8">
           {forWhom.items.map((item, index) => (
-            <div key={index} className="bg-white p-8 rounded-sm border border-corporate-200 shadow-sm">
-              <h3 className="text-lg font-bold text-corporate-900 mb-3">{item.title}</h3>
-              <p className="text-sm text-corporate-600 leading-relaxed">{item.description}</p>
+            <div key={index} className="bg-white p-10 rounded-3xl border border-gray-100 shadow-card hover:shadow-xl transition-all duration-300 group">
+              <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-accent mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
+                <Users size={24} />
+              </div>
+              <h3 className="text-xl font-bold text-corporate-900 mb-4 font-display">{item.title}</h3>
+              <p className="text-base text-corporate-600 leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* 4. BENEFITS */}
+      {/* 3. BENEFITS */}
       <Section id="benefits">
         <SectionTitle subtitle>{benefits.title}</SectionTitle>
         
         {/* Intro */}
-        <div className="max-w-3xl mb-12">
-          <p className="text-lg text-corporate-700 leading-relaxed font-light">
+        <div className="max-w-4xl mb-16">
+          <p className="text-2xl text-corporate-600 leading-relaxed font-light">
             {benefits.intro}
           </p>
         </div>
 
         {/* 1. Key Benefits Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
           {benefits.items.map((item, index) => (
-            <div key={index} className="bg-white border border-corporate-200 p-6 rounded-sm hover:shadow-lg transition-all duration-300 group">
-              <div className="mb-4 bg-emerald-50 w-12 h-12 rounded-sm flex items-center justify-center group-hover:bg-emerald-100 transition-colors">
+            <div key={index} className="bg-white border border-gray-100 p-10 rounded-2xl shadow-card hover:shadow-xl transition-all duration-300 group">
+              <div className="mb-8 bg-gray-50 w-16 h-16 rounded-xl flex items-center justify-center group-hover:bg-accent group-hover:text-white transition-colors">
                 {getIconForBenefit(index)}
               </div>
-              <h3 className="font-bold text-corporate-900 mb-2">{item.title}</h3>
-              <p className="text-sm text-corporate-600 leading-relaxed">{item.description}</p>
+              <h3 className="text-xl font-bold text-corporate-900 mb-4 font-display">{item.title}</h3>
+              <p className="text-corporate-600 leading-relaxed">{item.description}</p>
             </div>
           ))}
         </div>
 
         {/* 2. Comparison Table */}
-        <div className="bg-corporate-50 rounded-sm p-6 md:p-8 mb-16 border border-corporate-200">
-          <h3 className="text-xl font-semibold text-corporate-900 mb-6">{benefits.comparison.title}</h3>
+        <div className="bg-gray-50 rounded-3xl p-8 md:p-12 mb-24 border border-gray-100">
+          <h3 className="text-3xl font-bold text-corporate-900 mb-10 font-display">{benefits.comparison.title}</h3>
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse bg-white shadow-sm rounded-sm overflow-hidden">
+            <table className="w-full text-left border-collapse bg-white shadow-card rounded-2xl overflow-hidden">
               <thead>
                 <tr className="bg-corporate-900 text-white">
                   {benefits.comparison.headers.map((header, index) => (
-                    <th key={index} className="p-4 border-b border-corporate-800 font-medium text-sm md:text-base">
+                    <th key={index} className="p-6 font-bold text-sm uppercase tracking-widest">
                       {header}
                     </th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-corporate-100">
+              <tbody className="divide-y divide-gray-100">
                 {benefits.comparison.rows.map((row, rowIndex) => (
-                  <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-corporate-50/50'}>
+                  <tr key={rowIndex} className="hover:bg-gray-50 transition-colors">
                     {row.map((cell, cellIndex) => (
                       <td 
                         key={cellIndex} 
-                        className={`p-4 text-sm text-corporate-800 ${cellIndex === 0 ? 'font-medium' : ''}`}
+                        className={`p-6 text-base text-corporate-800 ${cellIndex === 0 ? 'font-bold' : ''}`}
                       >
                         {cell}
                       </td>
@@ -196,34 +201,37 @@ const Home: React.FC = () => {
               </tbody>
             </table>
           </div>
-          <p className="mt-4 text-sm text-corporate-600 italic border-l-4 border-emerald-500 pl-4 bg-white py-2 pr-2">
-            {benefits.comparison.conclusion}
-          </p>
+          <div className="mt-8 p-6 bg-white rounded-2xl border-l-8 border-accent shadow-sm">
+            <p className="text-lg text-corporate-900 font-bold italic">
+              {benefits.comparison.conclusion}
+            </p>
+          </div>
         </div>
 
         {/* 3. Targets and CTA */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
           <div>
-            <h3 className="text-xl font-semibold text-corporate-900 mb-6">Кому особенно подходит инструмент</h3>
-            <ul className="space-y-3">
+            <h3 className="text-3xl font-bold text-corporate-900 mb-8 font-display">Кому особенно подходит инструмент</h3>
+            <ul className="space-y-4">
               {benefits.targets.map((target, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                  <span className="text-corporate-700">{target}</span>
+                <li key={index} className="flex items-start gap-4">
+                  <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
+                  <span className="text-lg text-corporate-700 font-medium">{target}</span>
                 </li>
               ))}
             </ul>
           </div>
-          <div className="bg-corporate-900 p-8 rounded-sm text-center">
-            <h4 className="text-white text-lg font-medium mb-4">Нужны деньги для развития бизнеса?</h4>
-            <p className="text-corporate-300 text-sm mb-6">Получите финансирование под активы компании на индивидуальных условиях.</p>
+          <div className="bg-corporate-900 p-12 rounded-3xl text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-20 blur-3xl rounded-full -translate-y-1/2 translate-x-1/2"></div>
+            <h4 className="text-white text-2xl font-bold mb-4 font-display">Нужны деньги для развития бизнеса?</h4>
+            <p className="text-corporate-400 text-lg mb-10 leading-relaxed">Получите финансирование под активы компании на индивидуальных условиях.</p>
             <a 
               href={telegramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-corporate-900 hover:bg-emerald-50 font-bold rounded-sm transition-colors w-full justify-center"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-accent text-white hover:bg-accent-hover font-bold rounded-2xl transition-all duration-300 w-full justify-center shadow-xl shadow-red-500/20"
             >
-              <Send size={18} />
+              <Send size={20} />
               Получить консультацию
             </a>
           </div>
@@ -235,12 +243,12 @@ const Home: React.FC = () => {
         <SectionTitle subtitle>{howWeWork.title}</SectionTitle>
         <div className="grid md:grid-cols-3 gap-8">
            {howWeWork.steps.map((step, index) => (
-             <div key={index} className="relative p-6 bg-white border border-corporate-200 rounded-sm hover:border-corporate-300 transition-colors">
-               <span className="absolute -top-3 left-6 bg-corporate-900 text-white text-xs font-bold px-2 py-1 rounded-sm">
+             <div key={index} className="relative p-10 bg-white border border-gray-100 rounded-2xl shadow-card hover:shadow-xl transition-all duration-300 group">
+               <span className="absolute -top-4 left-8 bg-accent text-white text-sm font-bold px-4 py-2 rounded-xl shadow-lg shadow-red-500/20">
                  {step.number}
                </span>
-               <h3 className="mt-2 text-lg font-bold text-corporate-900 mb-3">{step.title}</h3>
-               <p className="text-sm text-corporate-600 leading-relaxed">{step.text}</p>
+               <h3 className="mt-4 text-2xl font-bold text-corporate-900 mb-4 font-display">{step.title}</h3>
+               <p className="text-corporate-600 leading-relaxed">{step.text}</p>
              </div>
            ))}
         </div>
@@ -249,19 +257,22 @@ const Home: React.FC = () => {
       {/* 5. ASSETS */}
       <Section id="assets">
         <SectionTitle subtitle>{assets.title}</SectionTitle>
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {assets.items.map((item, index) => (
             <Link 
               key={index}
               to={item.link} 
-              className="group bg-white p-6 border border-corporate-200 rounded-sm block hover:border-corporate-400 hover:shadow-lg transition-all duration-300 relative"
+              className="group bg-white p-10 border border-gray-100 rounded-2xl block hover:shadow-2xl transition-all duration-500 relative overflow-hidden"
             >
-              <div className="flex justify-between items-start mb-6">
-                {getIconForAsset(index)}
-                <ArrowRight className="w-4 h-4 text-corporate-400 group-hover:text-corporate-900 transition-colors" />
+              <div className="absolute top-0 right-0 w-24 h-24 bg-gray-50 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-accent/10 transition-colors"></div>
+              <div className="flex justify-between items-start mb-8 relative z-10">
+                <div className="p-4 bg-gray-50 rounded-2xl group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                  {getIconForAsset(index)}
+                </div>
+                <ArrowRight className="w-6 h-6 text-corporate-300 group-hover:text-accent transition-all duration-300 group-hover:translate-x-1" />
               </div>
-              <h3 className="text-base font-bold text-corporate-900 mb-2">{item.title}</h3>
-              <p className="text-xs text-corporate-500 leading-relaxed">
+              <h3 className="text-xl font-bold text-corporate-900 mb-3 font-display relative z-10">{item.title}</h3>
+              <p className="text-sm text-corporate-500 leading-relaxed relative z-10">
                 {item.description}
               </p>
             </Link>
@@ -285,32 +296,32 @@ const Home: React.FC = () => {
       {/* 7. TAXES */}
       <Section id="taxes">
         <SectionTitle subtitle>{taxes.title}</SectionTitle>
-        <div className="max-w-4xl">
+        <div className="max-w-5xl">
           {/* Intro Text */}
-          <div className="flex items-start gap-4 mb-10 bg-corporate-50 p-6 rounded-sm border border-corporate-100">
-             <div className="p-2 bg-white rounded-sm shadow-sm flex-shrink-0">
-               <FileText className="w-6 h-6 text-corporate-700" />
+          <div className="flex items-start gap-6 mb-16 bg-gray-50 p-10 rounded-3xl border border-gray-100">
+             <div className="p-4 bg-white rounded-2xl shadow-sm flex-shrink-0">
+               <FileText className="w-8 h-8 text-accent" />
              </div>
              <div>
-                <p className="text-lg text-corporate-800 leading-relaxed font-light">
+                <p className="text-2xl text-corporate-800 leading-relaxed font-light">
                   {taxes.intro}
                 </p>
              </div>
           </div>
 
           {/* Tax Details Grid */}
-          <div className="space-y-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {taxes.details && taxes.details.map((detail, index) => (
-              <div key={index} className="bg-white border border-corporate-200 rounded-sm p-6 md:p-8 shadow-sm">
-                <h3 className="text-xl font-bold text-corporate-900 mb-4 flex items-center gap-3">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
+              <div key={index} className="bg-white border border-gray-100 rounded-2xl p-10 shadow-card hover:shadow-xl transition-all duration-300">
+                <h3 className="text-2xl font-bold text-corporate-900 mb-8 flex items-center gap-4 font-display">
+                  <div className="w-3 h-3 bg-accent rounded-full"></div>
                   {detail.title}
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {detail.items.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-corporate-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-corporate-700 text-sm leading-relaxed">{item}</span>
+                    <li key={idx} className="flex items-start gap-4">
+                      <CheckCircle2 className="w-6 h-6 text-accent flex-shrink-0 mt-0.5" />
+                      <span className="text-corporate-700 text-lg leading-relaxed">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -320,25 +331,28 @@ const Home: React.FC = () => {
           
           {/* Legal Footer */}
           {taxes.legal && (
-            <div className="mt-10 bg-corporate-200/30 p-6 rounded-sm border-l-4 border-corporate-500 flex gap-4">
-               <Scale className="w-6 h-6 text-corporate-600 flex-shrink-0" />
+            <div className="mt-12 bg-corporate-900 p-10 rounded-3xl flex flex-col md:flex-row gap-8 items-center">
+               <div className="p-5 bg-white/10 rounded-2xl">
+                <Scale className="w-10 h-10 text-accent" />
+               </div>
                <div>
-                  <h4 className="font-bold text-corporate-900 mb-2">{taxes.legal.title}</h4>
-                  <p className="text-sm text-corporate-700 leading-relaxed">
+                  <h4 className="text-xl font-bold text-white mb-3 font-display">{taxes.legal.title}</h4>
+                  <p className="text-corporate-400 leading-relaxed">
                     {taxes.legal.text}
                   </p>
                </div>
             </div>
           )}
 
-          <div className="mt-10 text-center">
+          <div className="mt-16 text-center">
              <a 
               href={telegramUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-corporate-900 font-bold border-b-2 border-emerald-500 hover:text-emerald-700 transition-colors pb-1"
+              className="inline-flex items-center gap-3 text-corporate-900 font-bold text-xl hover:text-accent transition-colors group"
              >
-               Обсудить налоговые аспекты вашей сделки <ArrowRight size={16} />
+               Обсудить налоговые аспекты вашей сделки 
+               <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
              </a>
           </div>
 
@@ -347,17 +361,21 @@ const Home: React.FC = () => {
 
       {/* 8. RISKS */}
       <Section id="risks" dark>
-        <div className="bg-white border-l-4 border-amber-500 p-8 shadow-sm max-w-3xl">
-          <h2 className="text-xl font-semibold text-corporate-900 mb-4 flex items-center gap-3">
-            <AlertTriangle className="text-amber-500" />
+        <div className="bg-white border-l-[12px] border-amber-500 p-10 md:p-16 rounded-3xl shadow-card max-w-4xl">
+          <h2 className="text-3xl font-bold text-corporate-900 mb-8 flex items-center gap-4 font-display">
+            <div className="p-3 bg-amber-50 rounded-xl">
+              <AlertTriangle className="text-amber-500 w-8 h-8" />
+            </div>
             {risks.title}
           </h2>
-          <div className="space-y-4 text-sm text-corporate-700 leading-relaxed">
+          <div className="space-y-6 text-xl text-corporate-700 leading-relaxed font-light">
             <p>{risks.text}</p>
-            <p>{risks.subText}</p>
-            <Link to="#" className="inline-flex items-center text-corporate-900 font-medium hover:underline mt-2 cursor-default opacity-50">
-               Подробнее <ArrowRight size={14} className="ml-1" />
-            </Link>
+            <p className="text-corporate-900 font-bold">{risks.subText}</p>
+            <div className="pt-4">
+              <Link to="#" className="inline-flex items-center text-corporate-400 font-bold hover:text-accent text-lg transition-colors cursor-default opacity-50">
+                 Подробнее <ArrowRight size={20} className="ml-2" />
+              </Link>
+            </div>
           </div>
         </div>
       </Section>
@@ -374,11 +392,14 @@ const Home: React.FC = () => {
 
       {/* NEW: EXPERT SUMMARY (SEO TEXT) */}
       <Section dark>
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-corporate-900 mb-6">{expertSummary.title}</h2>
-          <div className="prose prose-corporate text-corporate-700 max-w-none text-sm leading-relaxed space-y-4">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-3xl font-bold text-corporate-900 mb-10 font-display">{expertSummary.title}</h2>
+          <div className="prose prose-lg prose-slate text-corporate-600 max-w-none leading-relaxed space-y-6 italic">
              {expertSummary.content.map((paragraph, index) => (
-               <p key={index}>{paragraph}</p>
+               <p key={index} className="relative pl-8">
+                 <span className="absolute left-0 top-0 text-accent text-4xl font-serif opacity-20">"</span>
+                 {paragraph}
+               </p>
              ))}
           </div>
         </div>

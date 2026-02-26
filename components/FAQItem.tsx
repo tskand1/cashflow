@@ -4,16 +4,18 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 export const FAQItem: React.FC<{ question: string, answer: React.ReactNode }> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border-b border-corporate-200 last:border-0">
-      <button 
+    <div className="mb-4">
+      <button
+        className="w-full flex items-center justify-between p-6 bg-white hover:bg-gray-50 rounded-2xl border border-gray-100 shadow-card transition-all duration-300 text-left group"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex justify-between items-center py-4 text-left hover:bg-corporate-50 transition-colors px-2 rounded-sm group"
       >
-        <span className="font-medium text-corporate-900 pr-4 group-hover:text-corporate-700 transition-colors">{question}</span>
-        {isOpen ? <ChevronUp size={20} className="text-corporate-500 flex-shrink-0" /> : <ChevronDown size={20} className="text-corporate-500 flex-shrink-0" />}
+        <span className="text-lg font-bold text-corporate-900 group-hover:text-accent transition-colors">{question}</span>
+        <div className={`p-2 rounded-xl transition-all duration-300 ${isOpen ? 'bg-accent text-white rotate-180' : 'bg-gray-50 text-corporate-400'}`}>
+          <ChevronDown size={20} />
+        </div>
       </button>
       {isOpen && (
-        <div className="pb-6 pt-2 px-2 text-sm text-corporate-600 leading-relaxed">
+        <div className="p-6 pt-2 text-corporate-600 leading-relaxed animate-in fade-in slide-in-from-top-2 duration-300">
           {answer}
         </div>
       )}
